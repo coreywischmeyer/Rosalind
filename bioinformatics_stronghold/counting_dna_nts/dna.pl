@@ -27,5 +27,5 @@ sub count_nt{
 			$unknown_nucleotide++;
 		}
 	}
-	return sprintf("A: %s T: %s G: %s C: %s", $a_count, $t_count, $g_count, $c_count);
+	return sprintf("%s %s %s %s", $a_count, $c_count, $g_count, $t_count);
 }
