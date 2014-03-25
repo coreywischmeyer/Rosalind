@@ -4,25 +4,13 @@ use Data::Dumper;
 
 my $fasta_file = shift or die "Where is your FASTA?";
 open(my $fh, "<", $fasta_file);
-$/ = "\r\n>";
-my $max = 0;
-my $max_name = '';
-my $name;
-my $sequence;
-my %sequences;
+$/= ">";
+my $sequence = "";
+my $header = <$fh>;
 while(<$fh>){ 
-	chomp;
-	if($_ =~ m/^>(.+)/){
-		$name = $1;
-		$sequence = '';
-		print "NAME: $name\n";
-	}else{
-		chomp;
-		$sequence .= $_;
-		$sequences{$name} = $sequence;
-	}
+	my $sequence = $_ =~ s/\n//g;
 }
-#print Dumper \%sequences;
+#prin	t Dumper \%sequences;
 
 #print "$max_name\n$max \n";
 
