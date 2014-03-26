@@ -15,8 +15,6 @@ sub calculate_outcome{
   my $dataset = shift;
   my($homozygous, $heterozygous, $homo_recessive) = @{$dataset};
   my $total = $homozygous + $heterozygous + $homo_recessive;
-  return (p($homozygous, $homozygous, $total) 
-          + p($homozygous, $heterozygous, $total)); 
-          
+  return ($homozygous + (.5 * $heterozygous)) / $total ; 
 }
 
