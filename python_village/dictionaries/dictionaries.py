@@ -6,7 +6,7 @@ fh = open(file, 'r')
 
 string = fh.readline()
 dictionary = dict()
-for word in string.split(' '):
+for word in string.split():
 	if word in dictionary:
 		dictionary[word] += 1
 	else:
