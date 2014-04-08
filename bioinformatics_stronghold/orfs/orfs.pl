@@ -3,7 +3,7 @@ use warnings;
 use Data::Dumper;
 my $string = shift or die;
 
-my @reading_frames = qw( 0 1 2 3 4 5 6 );
+my @reading_frames = qw( 0 1 2 );
 my $dna_to_aa = load_dna_codon_table();
 for my $reading_frame (@reading_frames){
   my $aa_string = "";
