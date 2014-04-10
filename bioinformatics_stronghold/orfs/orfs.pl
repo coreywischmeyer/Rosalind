@@ -18,7 +18,7 @@ sub find_protein_strings{
   my @reading_frames = qw( 0 1 2 );
   my $dna_to_aa = load_dna_codon_table();
   for my $reading_frame (@reading_frames){
-    my $aa_string = "";
+    my @aa_strings;
     my $dna_string = $string;
     my $ORF = 0;
     $dna_string = substr($dna_string, $reading_frame, -1);
@@ -30,11 +30,18 @@ sub find_protein_strings{
         $ORF = 1;
         my $aa = $dna_to_aa->{$codon};
         if($aa eq "Stop"){
-          print "$aa_string\n";
-          $aa_string = "";
+          foreach(@aa_strings){
+            print "$_ \n";
+          }
           $ORF = 0;
         }else{
-          $aa_string .= $aa; 
+          if($aa eq "M"){
+            push(@aa_strings, $aa);
+            next;
+          }
+          for(my $i = 0; $i < scalar @aa_strings; $i++){
+           $aa_strings[$i] .= $aa; 
+          }
         }
       }
     }
